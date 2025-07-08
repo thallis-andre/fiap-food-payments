@@ -167,8 +167,8 @@ async handleWebhook(@Body() notification: MercadoPagoNotification) {
 
 ```bash
 # Clonar o repositório
-git clone https://github.com/thallis-andre/fiap-soat10-payments.git
-cd fiap-soat10-payments
+git clone https://github.com/thallis-andre/fiap-food-payments.git
+cd fiap-food-payments
 
 # Instalar dependências
 npm install
