@@ -1,6 +1,6 @@
 services:
   fiap-food-payments:
-    image: fiapfood/payments:latest
+    image: ghcr.io/thallis-andre/fiap-food-payments:latest
     build:
       context: ..
       args:
@@ -21,10 +21,18 @@ services:
       AMQP_URL: 'amqp://fiapfood:fiapfood@rabbitmq:5672'
     command: sh -c "sleep 10 && npm run start:prod"
     ports:
-      - 4000:3000
-    depends_on: [mongodb, rabbitmq]
+      - 3000:3000
+    depends_on:
+      - mongodb
+      - rabbitmq
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_PASSWORD: fiapfood
+    ports:
+      - 5432:5432
   mongodb:
-    image: fiapfood/mongodbrs:6
+    image: ghcr.io/thallis-andre/mongodbrs:6
     build:
       context: .
       dockerfile: ./Dockerfile.mongodb
@@ -49,11 +57,10 @@ services:
         ]
       })' && if [ $(mongosh -u fiapfood -p fiapfood --quiet --host mongodb:27017 --eval 'rs.status().ok') -eq 1 ]; then exit 0; else exit 1; fi"
   rabbitmq:
-    image: fiapfood/rabbitmq:3-management-delayed
+    image: ghcr.io/thallis-andre/rabbitmq:3-management-delayed
     build:
       context: .
       dockerfile: ./Dockerfile.rabbitmq
-    # hostname: rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: 'fiapfood'
       RABBITMQ_DEFAULT_PASS: 'fiapfood'
