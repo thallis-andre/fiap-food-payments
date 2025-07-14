@@ -1,5 +1,5 @@
 import { PixQRCodeService } from '@fiap-food/external-providers/pix';
-import PIX from '@fiap-foodxternal-providers/pix/pix';
+import PIX from '@fiap-food/external-providers/pix/pix';
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { PixService } from './pix.service';
