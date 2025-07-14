@@ -2,10 +2,10 @@ import {
   AggregateMergeContext,
   TransactionManager,
 } from '@fiap-food/tactical-design/core';
-import { FakeMongooseModel } from '@fiap-foodest-factory/utils';
 import { INestApplication } from '@nestjs/common';
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
+import { FakeMongooseModel } from '../../../../../../../test/libs/test-factory/src/utils';
 import { PaymentRepository } from '../../../application/abstractions/payment.repository';
 import { MongoosePaymentSchemaFactory } from './payment-schema.factory';
 import { MongoosePaymentRepository } from './payment.repository';

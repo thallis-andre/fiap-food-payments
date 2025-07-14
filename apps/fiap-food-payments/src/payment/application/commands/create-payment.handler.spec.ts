@@ -1,8 +1,8 @@
 import { TransactionManager } from '@fiap-food/tactical-design/core';
 import {
-  FakeRepository,
-  FakeTransactionManager,
-} from '@fiap-foodest-factory/utils';
+    FakeRepository,
+    FakeTransactionManager,
+} from '@fiap-food/test-factory/utils';
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Types } from 'mongoose';
