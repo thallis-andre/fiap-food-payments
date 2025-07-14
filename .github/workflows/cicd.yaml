@@ -29,6 +29,21 @@ jobs:
         run: npm run lint:check
       - name: Run Tests for SonarQube
         run: npm run test:cov
+      - name: Baixar SonarQube Scanner CLI
+        run: |
+          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+          unzip sonar-scanner-cli-5.0.1.3006-linux.zip
+          mv sonar-scanner-5.0.1.3006-linux sonar-scanner
+      - name: SonarQube Scanner
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          ./sonar-scanner/bin/sonar-scanner \
+            -Dsonar.projectKey=thallis-andre_fiap-food-payments \
+            -Dsonar.organization=fiap-soat10-f4 \
+            -Dsonar.sources=. \
+            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-quality-gate-action@master
         with:
